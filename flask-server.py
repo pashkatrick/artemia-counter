@@ -1,7 +1,8 @@
 from flask import Flask, Response, render_template, request, make_response, send_file
+from picamera2.picamera2 import *
 import numpy as np
 import cv2 as cv
-import os, sys, time
+import os, sys, time, datetime
 
 app = Flask(__name__,
             static_url_path='',
@@ -48,6 +49,8 @@ def gen_frames():
 def tasks():
     if request.method == 'POST':
         if request.form.get('count') == 'Count':
+            return "204 - No content"
+        if request.form.get('save') == 'Save':
             return "204 - No content"
     return render_template('index.html') 
 
