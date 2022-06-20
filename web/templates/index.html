@@ -52,9 +52,11 @@
   <main class="px-3">
     <h1>artemia nauplii counter.</h1>
     <img src="{{ url_for('video_feed') }}" width="100%" style="margin:0px 0px 20px 0px; border-radius:15px">
-    <button id="save" name="save" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save</button>
-    <button id="count" name="count" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count</button> 
-    <button id="edit" name="edit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Edit</button>
+    <form method="post" action="{{ url_for('tasks') }}">
+      <button type="submit" id="save" name="save" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save</button>
+      <button type="submit" id="count" name="count" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count</button> 
+      <button type="submit" id="edit" name="edit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Edit</button>
+    </form>	
   </main>
 
   <footer class="mt-auto text-white-50">

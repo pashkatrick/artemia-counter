@@ -1,8 +1,10 @@
 from flask import Flask, Response, render_template, request, make_response, send_file
 from picamera2.picamera2 import *
+from time import sleep
 import numpy as np
 import cv2 as cv
 import os, sys, time, datetime
+import subprocess
 
 app = Flask(__name__,
             static_url_path='',
@@ -14,27 +16,26 @@ camera.set(cv.CAP_PROP_FRAME_WIDTH, 640) #2028
 camera.set(cv.CAP_PROP_FRAME_HEIGHT, 480) #1520
 camera.set(cv.CAP_PROP_FPS, 30)
 
-def last_frame():
-    success, frame = camera.read()
-    #if success:
-        # PREPROCESSING GOES HERE
-        # NEEDS TO TURN IMAGE AND NUMBER
-        #frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-        #frame = cv.bitwise_not(frame)
-        #pass
-    #else:
-        # TODO: What does it return if camera fails?
-        #pass
-    
-    ret, buffer = cv.imencode('.jpg', frame)
-    frame = buffer.tobytes()
-    #return frame
-    return (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+save = 0
+
+dir = "/home/pi/Desktop/Biomet/images/"
 
 def gen_frames():
+    global save
+    
     while True:
         success, frame = camera.read()
         if success:
+            
+            if (save):
+                save = 0
+                fileName = "img11.jpg"
+                cmd = "raspistill -o" + fileName
+                subprocess.call(cmd, shell=True)
+                print('saving')
+                sleep(4)
+                print('saved')
+            
             try:
                 ret, buffer = cv.imencode('.jpg', frame)
                 frame = buffer.tobytes()
@@ -49,15 +50,24 @@ def gen_frames():
 def tasks():
     if request.method == 'POST':
         if request.form.get('count') == 'Count':
+            # do "pass" instead?
             return "204 - No content"
-        if request.form.get('save') == 'Save':
+        elif request.form.get('save') == 'Save':
+            print('works')
+            global save
+            save = 1
+            print(save)
             return "204 - No content"
+        #else: pass
+    #elif request.method == 'GET':
+    #    return render_template('index.html')
+    
     return render_template('index.html') 
 
-@app.route('/image_result')
-def image_result():
-    # Look for a better method
-    return Response(last_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+#@app.route('/image_result')
+#def image_result():
+#    # Look for a better method
+#    return Response(last_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed')
 def video_feed():

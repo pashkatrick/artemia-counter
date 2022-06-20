@@ -1,8 +1,9 @@
-const count = document.getElementById('count');
+var count = document.getElementById('count');
+var save = document.getElementById('save');
+var edit = document.getElementById('edit');
 
-count.onclick = function() {
-    const save = document.getElementById('save');
-    const edit = document.getElementById('edit');
+count.onclick = function(e) {
+    e.preventDefault();
 
     if (save.style.visibility == 'visible' && edit.style.visibility == 'visible') {
         count.innerHTML = 'Count'
@@ -15,3 +16,11 @@ count.onclick = function() {
         edit.style.visibility = 'visible';
     }
 }; 
+
+save.onclick = function(e) {
+    e.preventDefault();
+}
+
+edit.onclick = function(e) {
+    e.preventDefault();
+}
