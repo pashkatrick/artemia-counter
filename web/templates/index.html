@@ -52,11 +52,16 @@
   <main class="px-3">
     <h1>artemia nauplii counter.</h1>
     <img src="{{ url_for('video_feed') }}" width="100%" style="margin:0px 0px 20px 0px; border-radius:15px">
-    <form method="post" action="{{ url_for('tasks') }}">
-      <button type="submit" id="save" name="save" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save</button>
-      <button type="submit" id="count" name="count" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count</button> 
-      <button type="submit" id="edit" name="edit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Edit</button>
-    </form>	
+    <!--
+	    <form method="post" action="{{ url_for('tasks') }}">
+	      <input type="submit" value="Save" id="save" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
+	      <input type="submit" value="Count" id="count" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white"> 
+	      <input type="submit" value="Edit" id="edit" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
+	    </form>
+    -->
+    <button type="button" id="save2" name="save2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save2</button>
+    <button type="button" id="count2" name="count2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count2</button>
+    <a id="edit2" name="edit2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index2') }}">Edit2</a>	
   </main>
 
   <footer class="mt-auto text-white-50">

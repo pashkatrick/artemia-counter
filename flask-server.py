@@ -27,14 +27,14 @@ def gen_frames():
         success, frame = camera.read()
         if success:
             
-            if (save):
-                save = 0
-                fileName = "img11.jpg"
-                cmd = "raspistill -o" + fileName
-                subprocess.call(cmd, shell=True)
-                print('saving')
-                sleep(4)
-                print('saved')
+            #if (save):
+            #    save = 0
+            #    fileName = "img11.jpg"
+            #    cmd = "raspistill -o " + fileName
+            #    subprocess.call(cmd, shell=True)
+            #    print('saving')
+            #    sleep(4)
+            #    print('saved')
             
             try:
                 ret, buffer = cv.imencode('.jpg', frame)
@@ -49,10 +49,10 @@ def gen_frames():
 @app.route('/requests', methods=['POST','GET'])
 def tasks():
     if request.method == 'POST':
-        if request.form.get('count') == 'Count':
+        if request.form.get('action') == 'Count':
             # do "pass" instead?
             return "204 - No content"
-        elif request.form.get('save') == 'Save':
+        elif request.form.get('action') == 'Save':
             print('works')
             global save
             save = 1
@@ -77,6 +77,24 @@ def video_feed():
 def index():
     return render_template('index.html')
 
+@app.route('/page2')
+def index2():
+    return render_template('page2.html')
+
+@app.route('/test')
+def test():
+    global camera
+    print('releasing camera')
+    camera.release()
+    cv.destroyAllWindows()
+    print('works')
+    fileName = "img11.jpg"
+    cmd = "raspistill -o " + fileName
+    subprocess.call(cmd, shell=True)
+    print('saving')
+    sleep(4)
+    print('saved')
+    return "204 - No content"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=False)
