@@ -59,9 +59,10 @@
 	      <input type="submit" value="Edit" id="edit" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
 	    </form>
     -->
-    <button type="button" id="save2" name="save2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save2</button>
-    <button type="button" id="count2" name="count2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count2</button>
-    <a id="edit2" name="edit2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index2') }}">Edit2</a>	
+    <button type="button" id="ready" name="ready" class="d-inline btn btn-lg btn-secondary fw-bold border-white bg-white">Ready</button>
+    <a id="b2by3" name="b2by3" class="d-none btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index2', my_var='1') }}">2x3</a>
+    <a id="b3by4" name="b3by4" class="d-none btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index2', my_var='2') }}">3x4</a>
+    <a id="b4by6" name="b4by6" class="d-none btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index2', my_var='3') }}">4x6</a>	
   </main>
 
   <footer class="mt-auto text-white-50">

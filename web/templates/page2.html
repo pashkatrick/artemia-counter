@@ -52,13 +52,10 @@
   <main class="px-3">
     <p>select wells</p>
 
-      <select name="array" class="custom-select" multiple>
-    	<option value="A1"></option>
-    	<option value="A2"></option>
-    	<option value="A3"></option>
-    	<option value="B1"></option>
-    	<option value="B2"></option>
-    	<option value="B3"></option>
+      <select id="array" name="array" class="custom-select" multiple>
+        {% for element in dim %}	    
+	  <option value="{{dim}}"></option>
+ 	{% endfor %}
       </select>
  </main>
 

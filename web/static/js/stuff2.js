@@ -56,4 +56,23 @@ class CustomSelect {
 document.querySelectorAll(".custom-select").forEach((selectElement) => {
     new CustomSelect(selectElement);
 });
+
+const length = document.querySelector('select').length;
+
+window.onload = (event) => {
+    console.log(length);
+    if (length == 6) {
+	document.getElementById("array").style.gridTemplateColumns = "repeat(3, 1fr)";
+    }
+    else if (length == 12) {
+	console.log(document.querySelector('select').style);
+	document.getElementById("array").style.gridTemplateColumns = "repeat(4, 1fr)";
+	console.log(document.getElementById("array").style.gridTemplateColumns);
+    }
+    else {
+	document.getElementById("array").style.gridTemplateColumns = "repeat(6, 1fr)";
+    }  
+};
+
+
   

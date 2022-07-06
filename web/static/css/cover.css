@@ -2,14 +2,6 @@
  * Globals
  */
 
-#save2 {
-  visibility: hidden;
-}
-
-#edit2 {
-  visibility: hidden;
-}
-
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,

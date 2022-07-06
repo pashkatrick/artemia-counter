@@ -77,9 +77,24 @@ def video_feed():
 def index():
     return render_template('index.html')
 
+def coords(row, clm):
+    letters = ['A', 'B', 'C', 'D']
+    rows = letters[0:row]
+    newrow = [i+str(j) for i in rows for j in range(1,clm+1)]
+    return newrow
+        
 @app.route('/page2')
 def index2():
-    return render_template('page2.html')
+    my_var = int(request.args.get('my_var', None))
+    if my_var == 1:
+        dim = coords(2,3)
+    elif my_var == 2:
+        dim = coords(3,4) 
+    elif my_var == 3:
+        dim = coords(4,6)
+    else:
+        dim = ['A1']
+    return render_template('page2.html', dim=dim)
 
 @app.route('/test')
 def test():
@@ -88,7 +103,7 @@ def test():
     camera.release()
     cv.destroyAllWindows()
     print('works')
-    fileName = "img11.jpg"
+    fileName = "./img11.jpg"
     cmd = "raspistill -o " + fileName
     subprocess.call(cmd, shell=True)
     print('saving')

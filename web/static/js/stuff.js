@@ -1,27 +1,18 @@
-var count = document.getElementById('count');
-var save = document.getElementById('save');
-var edit = document.getElementById('edit');
+const b2by3 = document.querySelector('#b2by3');
+const b3by4 = document.querySelector('#b3by4');
+const b4by6 = document.querySelector('#b4by6');
+const ready = document.getElementById('ready');
 
-const count2 = document.querySelector('#count2');
-const save2 = document.querySelector('#save2');
-const edit2 = document.querySelector('#edit2');
-
-count2.onclick = function(e) {
+ready.onclick = function(e) {
     e.preventDefault();
 
-    if (save2.style.visibility == 'visible' && edit2.style.visibility == 'visible') {
-        count2.innerHTML = 'Count'
-        save2.style.visibility = 'hidden';
-	edit2.style.visibility = 'hidden';
-
-    } else {
-        count2.innerHTML = 'Home'
-        save2.style.visibility = 'visible';
-        edit2.style.visibility = 'visible';
-    }
+    ready.classList.replace("d-inline", "d-none");
+    b2by3.classList.replace("d-none", "d-inline");
+    b3by4.classList.replace("d-none", "d-inline");
+    b4by6.classList.replace("d-none", "d-inline");
 }; 
 
-save2.onclick = function(e) {
-    fetch('test')
-    	.then(response => console.log(response.body));
+b2by3.onclick = function(e) {
+    //fetch('test')
+    //	.then(response => console.log(response.body));
 }
