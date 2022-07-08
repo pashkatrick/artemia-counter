@@ -33,7 +33,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="/css/cover.css" rel="stylesheet">
+    <link href="/css/cover2-1.css" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark">
     
@@ -50,26 +50,48 @@
   </header>
 
   <main class="px-3">
-    <h1>artemia nauplii counter.</h1>
-    <img src="{{ url_for('video_feed') }}" width="100%" style="margin:0px 0px 20px 0px; border-radius:15px">
-    <!--
-	    <form method="post" action="{{ url_for('tasks') }}">
-	      <input type="submit" value="Save" id="save" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
-	      <input type="submit" value="Count" id="count" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white"> 
-	      <input type="submit" value="Edit" id="edit" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
-	    </form>
-    -->
-    <button type="button" id="save2" name="save2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save2</button>
-    <button type="button" id="count2" name="count2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count2</button>
-    <button type="button" id="edit2" name="edit2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Edit2</button>	
-  </main>
+    <p>select wells</p>
+
+    <div class="container">
+       <div class="subcontainer row row-cols-3">
+       <!--
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+           <button type="button" class="col my-btn btn btn-secondary">Toggle button</button>
+       -->
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-outlined"></label><br>
+
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-2-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-2-outlined"></label><br>
+
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-3-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-3-outlined"></label><br>
+
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-4-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-4-outlined"></label><br>
+
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-5-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-5-outlined"></label><br>
+
+	   <input type="checkbox" class="my-btn btn-check" id="btn-check-6-outlined" autocomplete="off">
+	   <label class="my-btn btn btn-outline-primary" for="btn-check-6-outlined"></label><br>
+       </div>
+    </div>
+
+    <a id="ready2" name="ready2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" 		           href="{{ url_for('index3') }}">Ready</a>	
+   	
+ </main>
 
   <footer class="mt-auto text-white-50">
     <p>Made by <a href="https://www.linkedin.com/in/dariacuna/" class="text-white">Dari</a>.</p>
   </footer>
 </div>
     
-<script src="/js/stuff.js"></script>
+<script src="/js/stuff2-1.js"></script>
 
   </body>
 </html>

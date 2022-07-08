@@ -94,7 +94,7 @@ def index2():
         dim = coords(4,6)
     else:
         dim = ['A1']
-    return render_template('page2.html', dim=dim)
+    return render_template('page2-1.html', dim=dim)
 
 @app.route('/page3')
 def index3():
