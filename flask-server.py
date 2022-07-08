@@ -96,6 +96,10 @@ def index2():
         dim = ['A1']
     return render_template('page2.html', dim=dim)
 
+@app.route('/page3')
+def index3():
+    return render_template('page3.html')
+
 @app.route('/test')
 def test():
     global camera

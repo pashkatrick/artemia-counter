@@ -52,11 +52,14 @@
   <main class="px-3">
     <p>select wells</p>
 
-      <select id="array" name="array" class="custom-select" multiple>
+    <select id="array" name="array" class="custom-select" multiple>
         {% for element in dim %}	    
-	  <option value="{{dim}}"></option>
+	  <option value="{{element}}"></option>
  	{% endfor %}
-      </select>
+    </select>
+
+    <a id="ready2" name="ready2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" 		           href="{{ url_for('index3') }}">Ready</a>	
+   	
  </main>
 
   <footer class="mt-auto text-white-50">

@@ -65,14 +65,15 @@ window.onload = (event) => {
 	document.getElementById("array").style.gridTemplateColumns = "repeat(3, 1fr)";
     }
     else if (length == 12) {
-	console.log(document.querySelector('select').style);
+	console.log(document.querySelector(".custom-select").style);
 	document.getElementById("array").style.gridTemplateColumns = "repeat(4, 1fr)";
 	console.log(document.getElementById("array").style.gridTemplateColumns);
     }
     else {
 	document.getElementById("array").style.gridTemplateColumns = "repeat(6, 1fr)";
-    }  
+    }
 };
+
 
 
   

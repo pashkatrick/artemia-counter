@@ -2,7 +2,7 @@ from OBJETO_ARTEMIAS import motor
 from time import sleep
 import time
 
-def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
+def matrix_motion (tipo_pozo,tiempo_foto):
     
     # check_pozo:
     # array de bools de los pozos
@@ -59,29 +59,23 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
         mot_y.run_position(-j*dist_pozos + dis_init_y)
         
         while i < num_x:
-            # (i+1)-1=i so it starts in 0
-            if check_pozo[2*(j)+i] == True:   
-                mot_x.run_position(i*dist_pozos + dis_init_x)
-                
-                # viewed from the front
-                # yellow strip looking north
-                # from top to botoom, left to right (no U shape)
-                # in normal coords (3x4):
-                # A4, B4, C4, A3, B3, C3, A2, etc
-                # i+1: column
-                # j+1: row
-                print("tomando foto: ",i+1," ",j+1)
-                
-                # cmd: take picture
-                
-                time.sleep(tiempo_foto)
+             
+            mot_x.run_position(i*dist_pozos + dis_init_x)
+            # viewed from the front
+            # i+1: column
+            # j+1: row
+            print("tomando foto: ",i+1," ",j+1)
             i = i + 1
+            
+            # cmd: take picture
+            
+            time.sleep(tiempo_foto)
             
         j = j + 1
         i = 0
     
     mot_x.set_motor()
     mot_y.set_motor()
+            
 
-matrix = [1,1,0,0,0,1] 
-matrix_motion(1,1,matrix)
+matrix_motion(1,3)
