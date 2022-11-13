@@ -1,5 +1,6 @@
 from flask import Flask, Response, render_template, request, make_response, send_file
-from picamera2.picamera2 import *
+#from picamera2.picamera2 import *
+from PRUEBA_IMPORT import matrix_motion
 from time import sleep
 import numpy as np
 import cv2 as cv
@@ -18,7 +19,7 @@ camera.set(cv.CAP_PROP_FPS, 30)
 
 save = 0
 
-dir = "/home/pi/Desktop/Biomet/images/"
+dir = "/home/pi/Biomet/images/"
 
 def gen_frames():
     global save
@@ -94,10 +95,17 @@ def index2():
         dim = coords(4,6)
     else:
         dim = ['A1']
-    return render_template('page2-1.html', dim=dim)
+    return render_template('page2.html', dim=dim)
 
-@app.route('/page3')
+@app.route('/page3', methods=['GET', 'POST'])
 def index3():
+    bools = request.get_json(force=True)
+    pre = [int(e) for e in bools]
+    A = np.reshape(pre, (-1,3))
+    B = np.flip(A, axis=1)
+    C = np.transpose(B)
+    D = C.flatten()
+    matrix_motion(1,2,D)
     return render_template('page3.html')
 
 @app.route('/test')

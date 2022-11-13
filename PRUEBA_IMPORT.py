@@ -10,7 +10,7 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     # 1: seleccionado (sí se toma foto)
     
     mot_y = motor(19,26,17,3200,0)
-    mot_x = motor(16,21,4,3200,1)
+    mot_x = motor(12,21,23,3200,1)
     
     mot_x.set_vel_max(2)
     mot_x.set_acel(15)
@@ -20,8 +20,8 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     mot_y.set_rango(-10.5,0)
     
     if tipo_pozo == 1:
-        dis_init_x = 2
-        dis_init_y = -2
+        dis_init_x = 1.75
+        dis_init_y = -1
         num_x = 2
         num_y = 3
         dist_pozos = 3.75
@@ -30,7 +30,13 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
         dis_init_y = -0.3
         num_x = 4
         num_y = 6
-        dist_pozos = 1.93 
+        dist_pozos = 1.93
+    elif tipo_pozo == 3:
+        dis_init_x = 0.5
+        dis_init_y = -0.275
+        num_x = 4
+        num_y = 6
+        dist_pozos = 1.93
 
 
     mot_x.set_motor()
@@ -83,5 +89,5 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     mot_x.set_motor()
     mot_y.set_motor()
 
-matrix = [1,1,0,0,0,1] 
-matrix_motion(1,1,matrix)
+#matrix = [1,0,0,0,0,0] 
+#matrix_motion(1,5,matrix)
