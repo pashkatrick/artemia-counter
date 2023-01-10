@@ -174,6 +174,7 @@ def index2():
 
 @app.route('/page3', methods=['GET', 'POST'])
 def index3():
+    
     if request.method == 'GET':
         return render_template('page3.html')
     else:
