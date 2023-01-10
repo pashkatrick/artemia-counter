@@ -16,6 +16,36 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+	.select {
+	  margin: 0 auto;
+	  margin-bottom: 10px;
+	  display: grid;
+	  grid-template-columns: repeat({{ dim | last | list | last | int}}, 1fr);
+	  max-width: 350px;
+	  gap: 4px;
+	}
+
+	.select__item {
+	  aspect-ratio: 1/ 1;
+	  display: flex;
+	  align-items: center;
+	  padding: 10px;
+	  cursor: pointer;
+	  font-family: "Heebo", sans-serif;
+	  text-align: center;
+	  text-shadow: none;
+	  justify-content: center;
+	  color: black;
+	  border-radius: 50%;
+	  background: #eeeeee;
+	  transition: background 0.1s;
+	}
+
+	.select__item--selected {
+	  background: #a3a3a3;
+	  color: #ffffff;
+	}
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -31,7 +61,6 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
     <link href="/css/cover2.css" rel="stylesheet">
   </head>
@@ -54,11 +83,11 @@
 
     <select id="array" name="array" class="custom-select" multiple>
         {% for element in dim %}	    
-	  <option value="{{element}}"></option>
+	  <option value="{{element}}">{{element}}</option>
  	{% endfor %}
     </select>
 
-    <a id="ready2" name="ready2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" 		           href="{{ url_for('index3') }}">Ready</a>	
+    <a id="ready2" name="ready2" class="btn btn-lg btn-secondary fw-bold border-white bg-white" href="{{ url_for('index3') }}">Ready</a>	
    	
  </main>
 

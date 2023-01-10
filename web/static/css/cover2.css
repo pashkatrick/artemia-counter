@@ -2,32 +2,6 @@
  * Globals
  */
 
-.select {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 300px;
-  gap: 4px;
-}
-
-.select__item {
-  aspect-ratio: 1/ 1;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  font-family: "Heebo", sans-serif;
-  text-align: center;
-  border-radius: 50%;
-  background: #eeeeee;
-  transition: background 0.1s;
-}
-
-.select__item--selected {
-  background: #a3a3a3;
-  color: #ffffff;
-}
-
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,

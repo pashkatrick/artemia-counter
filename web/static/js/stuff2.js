@@ -3,6 +3,7 @@ class CustomSelect {
         this.originalSelect = originalSelect;
         this.customSelect = document.createElement("div");
         this.customSelect.classList.add("select");
+        this.arraySelectedDivs = []
     
         this.originalSelect.querySelectorAll("option").forEach((optionElement) => {
             const itemElement = document.createElement("div");
@@ -52,28 +53,26 @@ class CustomSelect {
         itemElement.classList.remove("select__item--selected");
     }
 }
-  
-document.querySelectorAll(".custom-select").forEach((selectElement) => {
-    new CustomSelect(selectElement);
-});
+
+new CustomSelect(document.querySelector(".custom-select"));
+
+document.querySelector("#ready2").addEventListener("click", () => {
+    var selected = []
+    var wells = []
+    for (var option of document.querySelector(".custom-select").options) {
+	wells.push(Number(option.selected))
+        if (option.selected) {
+            selected.push(option.value);
+        }
+    }
+    alert(selected);
+    alert(wells);
+
+    const url = 'http://192.168.1.170:5000/page3'
+    fetch(url, {
+    	method: "POST",
+	body: JSON.stringify(wells)
+    })
+})
 
 const length = document.querySelector('select').length;
-
-window.onload = (event) => {
-    console.log(length);
-    if (length == 6) {
-	document.getElementById("array").style.gridTemplateColumns = "repeat(3, 1fr)";
-    }
-    else if (length == 12) {
-	console.log(document.querySelector(".custom-select").style);
-	document.getElementById("array").style.gridTemplateColumns = "repeat(4, 1fr)";
-	console.log(document.getElementById("array").style.gridTemplateColumns);
-    }
-    else {
-	document.getElementById("array").style.gridTemplateColumns = "repeat(6, 1fr)";
-    }
-};
-
-
-
-  

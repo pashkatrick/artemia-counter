@@ -1,8 +1,9 @@
 from OBJETO_ARTEMIAS import motor    
 from time import sleep
+import cv2 as cv
 import time
 
-def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
+def matrix_motion (tipo_pozo,tiempo_foto,check_pozo, cam):
     
     # check_pozo:
     # array de bools de los pozos
@@ -10,7 +11,7 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     # 1: seleccionado (sí se toma foto)
     
     mot_y = motor(19,26,17,3200,0)
-    mot_x = motor(16,21,4,3200,1)
+    mot_x = motor(12,21,23,3200,1)
     
     mot_x.set_vel_max(2)
     mot_x.set_acel(15)
@@ -19,18 +20,26 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     mot_y.set_acel(15)
     mot_y.set_rango(-10.5,0)
     
+    # dis_init_x: posición inicial del PRIMER POZO
+    
     if tipo_pozo == 1:
-        dis_init_x = 2
-        dis_init_y = -2
+        dis_init_x = 1.75
+        dis_init_y = -1
         num_x = 2
         num_y = 3
         dist_pozos = 3.75
     elif tipo_pozo == 2:
         dis_init_x = 0.5
         dis_init_y = -0.3
+        num_x = 6
+        num_y = 4
+        dist_pozos = 1.93
+    elif tipo_pozo == 3:
+        dis_init_x = 0.5
+        dis_init_y = -0.275 #-0.3?
         num_x = 4
         num_y = 6
-        dist_pozos = 1.93 
+        dist_pozos = 1.93
 
 
     mot_x.set_motor()
@@ -55,12 +64,14 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
     i = 0
     j = 0
     
+    images = [None] * (num_x * num_y)
+    
     while j < num_y:
         mot_y.run_position(-j*dist_pozos + dis_init_y)
         
         while i < num_x:
             # (i+1)-1=i so it starts in 0
-            if check_pozo[2*(j)+i] == True:   
+            if check_pozo[num_x*(j)+i] == True:
                 mot_x.run_position(i*dist_pozos + dis_init_x)
                 
                 # viewed from the front
@@ -73,15 +84,23 @@ def matrix_motion (tipo_pozo,tiempo_foto,check_pozo):
                 print("tomando foto: ",i+1," ",j+1)
                 
                 # cmd: take picture
+                success, frame = cam.read()
+                images[num_x*(j)+i] = frame
                 
                 time.sleep(tiempo_foto)
-            i = i + 1
             
+            else:
+                images[num_x*(j)+i] = None
+            
+            i = i + 1
+        
         j = j + 1
         i = 0
     
     mot_x.set_motor()
     mot_y.set_motor()
+    
+    return images
 
-matrix = [1,1,0,0,0,1] 
-matrix_motion(1,1,matrix)
+#matrix = [1,0,0,0,0,0] 
+#matrix_motion(1,5,matrix)
