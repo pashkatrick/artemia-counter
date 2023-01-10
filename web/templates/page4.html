@@ -16,6 +16,36 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+	.select {
+	  margin: 0 auto;
+	  margin-bottom: 10px;
+	  display: grid;
+	  grid-template-columns: repeat({{ dim | last | list | last | int}}, 1fr);
+	  max-width: 350px;
+	  gap: 4px;
+	}
+
+	.select__item {
+	  aspect-ratio: 1/ 1;
+	  display: flex;
+	  align-items: center;
+	  padding: 10px;
+	  cursor: pointer;
+	  font-family: "Heebo", sans-serif;
+	  text-align: center;
+	  text-shadow: none;
+	  justify-content: center;
+	  color: black;
+	  border-radius: 50%;
+	  background: #eeeeee;
+	  transition: background 0.1s;
+	}
+
+	.select__item--selected {
+	  background: #a3a3a3;
+	  color: #ffffff;
+	}
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -31,9 +61,8 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
-    <link href="/css/cover.css" rel="stylesheet">
+    <link href="/css/cover2.css" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark">
     
@@ -50,26 +79,20 @@
   </header>
 
   <main class="px-3">
-    <h1>artemia nauplii counter.</h1>
-    <img src="{{ url_for('video_feed') }}" width="100%" style="margin:0px 0px 20px 0px; border-radius:15px">
-    <!--
-	    <form method="post" action="{{ url_for('tasks') }}">
-	      <input type="submit" value="Save" id="save" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
-	      <input type="submit" value="Count" id="count" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white"> 
-	      <input type="submit" value="Edit" id="edit" name="action" class="btn btn-lg btn-secondary fw-bold border-white bg-white">
-	    </form>
-    -->
-    <button type="button" id="save2" name="save2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Save2</button>
-    <button type="button" id="count2" name="count2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Count2</button>
-    <button type="button" id="edit2" name="edit2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Edit2</button>	
-  </main>
+    <p>select wells</p>
+    <select id="array" name="array" class="custom-select" multiple>
+        {% for element in result %}	    
+	  <option value="{{element}}">{{element}}</option>
+ 	{% endfor %}
+    </select>
+ </main>
 
   <footer class="mt-auto text-white-50">
     <p>Made by <a href="https://www.linkedin.com/in/dariacuna/" class="text-white">Dari</a>.</p>
   </footer>
 </div>
     
-<script src="/js/stuff.js"></script>
+<script src="/js/stuff4.js"></script>
 
   </body>
 </html>
