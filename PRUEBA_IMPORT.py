@@ -11,6 +11,7 @@ camera.set(cv.CAP_PROP_FPS, 30)
 
 save = 0
 art_num = 0
+counter = 15
 art = []
 
 #def capture():
@@ -69,7 +70,7 @@ def count(img):
 
     hsv = cv.cvtColor(crop, cv.COLOR_BGR2HSV)
     # (0, 43, 75), (34, 255, 255)
-    artemia = cv.inRange(hsv, (0, 37, 75), (54, 255, 161))
+    artemia = cv.inRange(hsv, (104, 0, 150), (146, 56, 233))
 
     back = crop.copy()
     back[artemia == 255] = (0, 255, 0)
@@ -84,7 +85,7 @@ def count(img):
 
     cnts = cv.findContours(threshed, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)[-2]
 
-    s1 = 40
+    s1 = 25
     s2 = 200   # 100 x 100 for (1920 x 1080)
     xcnts = []
     for cnt in cnts:
@@ -92,7 +93,7 @@ def count(img):
         area = cv.contourArea(cnt)
         peri = cv.arcLength(cnt, True)
         circularity = 4 * np.pi * (area / peri**2)
-        if 0.7 < circularity < 1:
+        if 0.5 < circularity < 1:
             if s1 < cv.contourArea(cnt) < s2:
                 xcnts.append(cnt)
 
@@ -102,6 +103,7 @@ def gen_frames():
     global art_num
     global art
     global save
+    global counter
     
     while True:
         success, frame = camera.read()
@@ -110,10 +112,11 @@ def gen_frames():
         if success:
             
             if (save):
-                # cv.imwrite('./test_final_2.jpg', frame)
+                cv.imwrite('./imgs/{}.jpg'.format(counter) , frame)
                 art_num = count(frame)
                 art.append(art_num)
                 
+                counter = counter + 1
                 save = 0
             #    save = 0
             #    fileName = "img11.jpg"

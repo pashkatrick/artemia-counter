@@ -68,7 +68,7 @@ document.querySelector("#ready2").addEventListener("click", () => {
     alert(selected);
     alert(wells);
 
-    const url = 'http://192.168.1.170:5000/page3'
+    const url = 'http://10.10.0.40:5000/page3'
     fetch(url, {
     	method: "POST",
 	body: JSON.stringify(wells)

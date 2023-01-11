@@ -97,13 +97,14 @@ def index3():
         B = np.flip(A, axis=1)
         C = np.transpose(B)
         D = C.flatten()
+        
         counts = matrix_motion(my_var,3,D)
         counts = np.array(counts)
         indices = np.nonzero(D)[0][:len(counts)]
         result = np.zeros_like(D)
         np.put(result, indices, np.take(counts, np.arange(len(indices))))
-        result = np.transpose(result.reshape(x,y))
-        result = result.ravel()
+        result = np.reshape(result, (x,y))
+        result = result.reshape(-1, order='F')
         
         # IMAGES NEED TO MATCH LOCATIONS
         
